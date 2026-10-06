@@ -19,7 +19,17 @@ npm install
 npm run dev
 ```
 
-The dev server prints a local URL. Open it in a browser.
+The dev server prints a local URL (usually `http://localhost:5173/`). Open that in a browser.
+
+**Do not** use the VS Code Live Server extension on the project root `index.html`. That only serves static HTML and cannot compile React/TypeScript, so the page stays blank.
+
+If you prefer Live Server:
+
+```bash
+npm run build
+```
+
+Then open the **`dist`** folder with Live Server (or run `npm run preview`).
 
 ## Production build
 

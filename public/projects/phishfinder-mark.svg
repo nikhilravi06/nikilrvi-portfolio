@@ -1,0 +1,23 @@
+<svg viewBox="0 0 240 108" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PhishFinder project mark">
+  <defs>
+    <linearGradient id="pf-neon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8f7ff"/>
+      <stop offset="45%" stop-color="#5ce1ff"/>
+      <stop offset="100%" stop-color="#2bb8e8"/>
+    </linearGradient>
+    <filter id="pf-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#pf-glow)">
+    <circle cx="120" cy="38" r="30" stroke="url(#pf-neon)" stroke-width="3.25"/>
+    <circle cx="120" cy="17.5" r="4.25" fill="url(#pf-neon)"/>
+    <path d="M120 21.5V36.5c0 11.5-8.5 20.5-18.5 22.5 3.8 2.8 9.2 1.2 12.2-4.2 2.6-4.6 3.3-10.2 3.3-15.8" stroke="url(#pf-neon)" stroke-width="3.25" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M99.5 57.5 91.5 53" stroke="url(#pf-neon)" stroke-width="3.25" stroke-linecap="round"/>
+  </g>
+  <text x="120" y="98" text-anchor="middle" fill="url(#pf-neon)" font-family="Arial, sans-serif" font-size="15.5" font-weight="700" letter-spacing="0.32em" filter="url(#pf-glow)">PHISHFINDER</text>
+</svg>

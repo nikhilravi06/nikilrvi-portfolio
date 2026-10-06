@@ -1,11 +1,11 @@
 import { Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
-import { nav } from "../data/resume.ts"
-import { Crystal } from "./Crystal.tsx"
+import { nav, site } from "../data/resume.ts"
 
 export function Header() {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState("")
+  const [overHero, setOverHero] = useState(true)
 
   useEffect(() => {
     const sections = nav
@@ -24,6 +24,21 @@ export function Header() {
     )
 
     sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const hero = document.getElementById("top")
+    if (!hero) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry) setOverHero(entry.isIntersecting)
+      },
+      { threshold: 0.12 },
+    )
+    observer.observe(hero)
     return () => observer.disconnect()
   }, [])
 
@@ -55,57 +70,72 @@ export function Header() {
   }, [open])
 
   const close = () => setOpen(false)
+  const onLight = overHero && !open
+  const contactClass = `sq-btn !min-h-9 !px-4 !text-[0.65rem] ${
+    onLight ? "sq-btn--light" : "sq-btn--dark"
+  }`
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+    <header
+      className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
+        onLight ? "bg-transparent text-white" : "border-b border-line bg-paper text-ink shadow-sm"
+      }`}
+    >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="group flex items-center gap-2.5" onClick={close}>
-          <Crystal size={22} className="transition-transform duration-300 group-hover:rotate-12" />
-          <span className="text-[0.95rem] font-medium tracking-[0.04em] text-ink lowercase">
-            nikilrvi
-          </span>
+        <a
+          href="#top"
+          className="text-[0.95rem] font-semibold tracking-[0.06em] lowercase"
+          onClick={close}
+        >
+          nikilrvi
         </a>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
           {nav.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               aria-current={active === item.id ? "true" : undefined}
-              className={`text-[0.82rem] tracking-wide transition-colors duration-200 ${
-                active === item.id ? "text-ink" : "text-muted hover:text-ink"
+              className={`text-[0.8rem] font-medium tracking-wide transition-opacity duration-200 ${
+                active === item.id ? "opacity-100" : "opacity-70 hover:opacity-100"
               }`}
             >
               {item.label}
             </a>
           ))}
+          <a href={`mailto:${site.email}`} className={contactClass}>Contact</a>
         </nav>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center text-ink md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <a href={`mailto:${site.email}`} className={contactClass} onClick={close}>
+            Contact
+          </a>
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
+            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          </button>
+        </div>
       </div>
 
       {open ? (
         <nav
           id="mobile-nav"
-          className="fixed inset-x-0 top-16 bottom-0 z-30 overflow-y-auto border-t border-line bg-paper px-5 py-6 md:hidden"
+          className="fixed inset-x-0 top-16 bottom-0 z-30 overflow-y-auto bg-paper px-5 py-8 text-ink md:hidden"
           aria-label="Mobile"
         >
-          <ul className="flex flex-col">
+          <ul className="flex flex-col gap-1">
             {nav.map((item) => (
-              <li key={item.id} className="border-b border-line last:border-b-0">
+              <li key={item.id}>
                 <a
                   href={`#${item.id}`}
                   onClick={close}
-                  className="block py-3.5 font-serif text-2xl text-ink"
+                  className="block py-3 text-2xl font-semibold tracking-tight"
                 >
                   {item.label}
                 </a>

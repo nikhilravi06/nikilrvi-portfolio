@@ -1,91 +1,98 @@
-import { useRef, useState } from "react"
-import { motion, useReducedMotion } from "framer-motion"
 import { projects } from "../data/resume.ts"
-import { Crystal } from "./Crystal.tsx"
 import { Reveal } from "./Reveal.tsx"
 import { SectionHeading } from "./SectionHeading.tsx"
 
-export function Projects() {
-  return (
-    <section id="projects" aria-labelledby="projects-heading" className="border-t border-line">
-      <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-        <Reveal>
-          <SectionHeading index="03" id="projects-heading" title="Projects" />
-        </Reveal>
-        <div className="grid gap-5 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <Reveal key={project.name} delay={index * 0.06}>
-              <ProjectCard
-                index={index}
-                name={project.name}
-                subtitle={project.subtitle}
-                summary={project.summary}
-                impact={project.impact}
-                technologies={project.technologies}
-              />
-            </Reveal>
-          ))}
+const cardBackgrounds: Record<string, string> = {
+  PhishFinder: "bg-gradient-to-br from-[#2a1810] via-[#8c4028] to-[#1a0f0c]",
+  TOMS: "bg-gradient-to-br from-[#1a1a1a] via-[#4a4a4a] to-[#0f0f0f]",
+}
+
+function ProjectVisual({ name, subtitle }: { name: string; subtitle: string }) {
+  const bg = cardBackgrounds[name] ?? "bg-muted-paper"
+
+  if (name === "PhishFinder") {
+    return (
+      <div
+        className={`relative flex aspect-[16/10] flex-col items-center justify-center px-6 text-center ${bg}`}
+        aria-hidden="true"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-40"
+          aria-hidden="true"
+        >
+          <div
+            className="h-28 w-28 rounded-full border-2 border-[#5eead4]/60 shadow-[0_0_24px_rgba(94,234,212,0.35)] sm:h-32 sm:w-32"
+          />
         </div>
+        <h3
+          className="relative z-10 text-3xl font-bold tracking-tight sm:text-4xl"
+          style={{
+            textShadow:
+              "0 0 20px rgba(94,234,212,0.45), 0 0 40px rgba(94,234,212,0.15)",
+          }}
+        >
+          <span className="text-[#a7f3ec]">Phish</span>
+          <span className="text-[#fef3c7]">Finder</span>
+        </h3>
+        <p className="relative z-10 mt-3 max-w-[16rem] text-xs leading-snug text-[#e7d5c8]/80">{subtitle}</p>
       </div>
-    </section>
+    )
+  }
+
+  if (name === "TOMS") {
+    return (
+      <div
+        className={`relative flex aspect-[16/10] flex-col items-center justify-center px-6 text-center ${bg}`}
+        aria-hidden="true"
+      >
+        <h3 className="text-4xl font-extrabold tracking-[0.2em] text-[#d4af37] sm:text-5xl">TOMS</h3>
+        <div className="mt-3 flex items-center gap-2 text-[#c9a227]/70" aria-hidden="true">
+          <span className="text-[0.5rem]">★</span>
+          <span className="h-px w-8 bg-[#b91c1c]/80" />
+          <span className="text-[0.5rem]">★</span>
+        </div>
+        <p className="mt-3 max-w-[16rem] text-xs leading-snug text-white/55">{subtitle}</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className={`flex aspect-[16/10] items-center justify-center px-6 ${bg}`}>
+      <h3 className="text-2xl font-bold text-white">{name}</h3>
+    </div>
   )
 }
 
-function ProjectCard({
-  index,
-  name,
-  subtitle,
-  summary,
-  impact,
-  technologies,
-}: {
-  index: number
-  name: string
-  subtitle: string
-  summary: string
-  impact: string
-  technologies: readonly string[]
-}) {
-  const reduce = useReducedMotion()
-  const ref = useRef<HTMLElement>(null)
-  const [spot, setSpot] = useState({ x: 30, y: 20 })
-
+export function Projects() {
   return (
-    <motion.article
-      ref={ref}
-      onMouseMove={
-        reduce
-          ? undefined
-          : (event) => {
-              const box = ref.current?.getBoundingClientRect()
-              if (!box) return
-              setSpot({
-                x: ((event.clientX - box.left) / box.width) * 100,
-                y: ((event.clientY - box.top) / box.height) * 100,
-              })
-            }
-      }
-      whileHover={reduce ? undefined : { y: -4 }}
-      transition={{ duration: 0.25 }}
-      className="glass-panel group relative flex h-full flex-col overflow-hidden p-6 sm:p-8"
-      style={{
-        backgroundImage: `radial-gradient(420px circle at ${spot.x}% ${spot.y}%, rgba(255,255,255,0.72), transparent 42%)`,
-      }}
-    >
-      <div className="flex items-start justify-between">
-        <p className="font-serif text-lg text-accent">{String(index + 1).padStart(2, "0")}</p>
-        <Crystal
-          size={52}
-          className="opacity-80 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110 motion-reduce:transition-none"
-        />
+    <section id="projects" aria-labelledby="projects-heading" className="bg-muted-paper">
+      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <Reveal>
+          <SectionHeading id="projects-heading" title="Projects" />
+        </Reveal>
+        <ul className="grid gap-6 md:grid-cols-2">
+          {projects.map((project) => (
+            <li key={project.name}>
+              <Reveal>
+                <article className="template-card h-full overflow-hidden" aria-label={project.name}>
+                  <div className="sr-only">
+                    <h3>{project.name}</h3>
+                  </div>
+                  <ProjectVisual name={project.name} subtitle={project.subtitle} />
+                  <div className="p-6">
+                    <p className="text-sm font-semibold text-ink">{project.subtitle}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-ink">{project.summary}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{project.impact}</p>
+                    <p className="mt-5 text-[0.78rem] tracking-wide text-muted uppercase">
+                      {project.technologies.join(" · ")}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </div>
-      <h3 className="mt-8 font-serif text-[2rem] leading-none tracking-tight text-ink">{name}</h3>
-      <p className="mt-3 text-sm text-muted">{subtitle}</p>
-      <p className="mt-5 text-sm leading-relaxed text-ink">{summary}</p>
-      <p className="mt-4 text-sm leading-relaxed text-ink">{impact}</p>
-      <p className="mt-auto pt-8 text-[0.78rem] tracking-wide text-muted">
-        {technologies.join("  ·  ")}
-      </p>
-    </motion.article>
+    </section>
   )
 }
