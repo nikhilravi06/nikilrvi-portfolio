@@ -2,26 +2,24 @@ import { projects } from "../data/resume.ts"
 import { Reveal } from "./Reveal.tsx"
 import { SectionHeading } from "./SectionHeading.tsx"
 
+const projectTitleClass =
+  "text-[clamp(1.75rem,4vw,2.25rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-on-dark"
+
+const projectSubtitleClass =
+  "max-w-[18rem] text-sm font-normal leading-normal text-on-dark-soft"
+
 function ProjectVisual({ name, subtitle }: { name: string; subtitle: string }) {
   if (name === "PhishFinder") {
     return (
       <div
-        className="product-visual relative flex aspect-[16/10] flex-col items-center justify-center px-6 text-center"
+        className="product-visual flex aspect-[16/10] flex-col items-center justify-center px-8 text-center"
         aria-hidden="true"
       >
-        <div
-          className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-40"
-          aria-hidden="true"
-        >
-          <div className="h-28 w-28 rounded-full border-2 border-on-dark-soft sm:h-32 sm:w-32" />
-        </div>
-        <h3 className="relative z-10 text-3xl font-semibold tracking-[-0.02em] text-on-dark sm:text-4xl">
+        <h3 className={projectTitleClass}>
           <span className="text-text-link">Phish</span>
           Finder
         </h3>
-        <p className="relative z-10 mt-3 max-w-[16rem] text-xs leading-snug text-on-dark-soft">
-          {subtitle}
-        </p>
+        <p className={`mt-2 ${projectSubtitleClass}`}>{subtitle}</p>
       </div>
     )
   }
@@ -29,23 +27,18 @@ function ProjectVisual({ name, subtitle }: { name: string; subtitle: string }) {
   if (name === "TOMS") {
     return (
       <div
-        className="product-visual relative flex aspect-[16/10] flex-col items-center justify-center px-6 text-center"
+        className="product-visual flex aspect-[16/10] flex-col items-center justify-center px-8 text-center"
         aria-hidden="true"
       >
-        <h3 className="text-4xl font-semibold tracking-[0.08em] text-on-dark sm:text-5xl">TOMS</h3>
-        <div className="mt-3 flex items-center gap-2 text-on-dark-soft" aria-hidden="true">
-          <span className="text-[0.5rem]">★</span>
-          <span className="h-px w-8 bg-on-dark-soft/50" />
-          <span className="text-[0.5rem]">★</span>
-        </div>
-        <p className="mt-3 max-w-[16rem] text-xs leading-snug text-on-dark-soft">{subtitle}</p>
+        <h3 className={projectTitleClass}>TOMS</h3>
+        <p className={`mt-2 ${projectSubtitleClass}`}>{subtitle}</p>
       </div>
     )
   }
 
   return (
-    <div className="product-visual flex aspect-[16/10] items-center justify-center px-6">
-      <h3 className="text-2xl font-semibold text-on-dark">{name}</h3>
+    <div className="product-visual flex aspect-[16/10] items-center justify-center px-8">
+      <h3 className={projectTitleClass}>{name}</h3>
     </div>
   )
 }
