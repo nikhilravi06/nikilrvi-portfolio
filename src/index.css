@@ -272,3 +272,134 @@ body {
     display: none;
   }
 }
+
+.ide-skills {
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-surface-dark);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.ide-skills-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem 0;
+  background: var(--color-surface-dark-elevated);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-on-dark) 8%, transparent);
+}
+
+.ide-tab {
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-on-dark-soft);
+  border-radius: 6px 6px 0 0;
+}
+
+.ide-tab--active {
+  color: var(--color-on-dark);
+  background: var(--color-surface-dark);
+}
+
+.ide-code-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.ide-ln {
+  padding: 1.25rem 0.65rem 1.25rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-align: right;
+  color: var(--color-on-dark-soft);
+  user-select: none;
+  background: var(--color-surface-dark-soft);
+  border-right: 1px solid color-mix(in srgb, var(--color-on-dark) 10%, transparent);
+}
+
+.ide-ln div {
+  min-width: 1.25rem;
+}
+
+.ide-code {
+  border-radius: 0;
+  overflow-x: auto;
+}
+
+.ide-code code {
+  display: block;
+  min-width: min-content;
+}
+
+.tok-keyword {
+  color: #c792ea;
+}
+
+.tok-name {
+  color: #82aaff;
+}
+
+.tok-string {
+  color: #16a34a;
+}
+
+.tok-punct {
+  color: var(--color-on-dark-soft);
+}
+
+.ide-terminal {
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  border-top: 1px solid color-mix(in srgb, var(--color-on-dark) 10%, transparent);
+  background: #0d0d0d;
+}
+
+.ide-terminal-line {
+  margin: 0.35rem 0 0;
+}
+
+.ide-terminal-line:first-child {
+  margin-top: 0;
+}
+
+.tok-prompt {
+  color: #16a34a;
+}
+
+.tok-path {
+  color: #47c2ff;
+}
+
+.tok-cmd {
+  color: var(--color-on-dark);
+}
+
+.tok-success {
+  color: #16a34a;
+  margin-right: 0.35rem;
+}
+
+.tok-terminal-label {
+  color: #82aaff;
+  font-weight: 500;
+}
+
+.tok-terminal-values {
+  color: var(--color-on-dark-soft);
+}
+
+.ide-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.35rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-on-dark-soft);
+  border-top: 1px solid color-mix(in srgb, var(--color-on-dark) 10%, transparent);
+  background: var(--color-surface-dark-elevated);
+}
