@@ -4,22 +4,22 @@ import { SectionHeading } from "./SectionHeading.tsx"
 
 export function Experience() {
   return (
-    <section id="experience" aria-labelledby="experience-heading" className="bg-paper">
-      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+    <section id="experience" aria-labelledby="experience-heading" className="bg-canvas-soft">
+      <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
         <Reveal>
           <SectionHeading id="experience-heading" title="Experience" />
         </Reveal>
-        <ol className="space-y-4">
+        <ol className="divide-y divide-line-strong">
           {experience.map((role) => (
-            <li key={`${role.title}-${role.period}`}>
+            <li key={`${role.title}-${role.period}`} className="py-8 first:pt-0 last:pb-0">
               <Reveal>
-                <article className="grid gap-1 sm:grid-cols-[9.5rem_1fr] sm:gap-10">
-                  <p className="text-sm font-medium text-muted">{role.period}</p>
+                <article className="grid gap-2 sm:grid-cols-[9.5rem_1fr] sm:gap-10">
+                  <p className="text-sm text-muted">{role.period}</p>
                   <div>
-                    <h3 className="text-lg font-bold tracking-tight text-ink sm:text-xl">
+                    <h3 className="text-lg font-semibold tracking-tight text-ink sm:text-xl">
                       {role.title}
                     </h3>
-                    <p className="mt-1 text-sm text-muted">
+                    <p className="mt-1 text-sm leading-normal text-body">
                       {role.organization}
                       {role.location ? ` · ${role.location}` : ""}
                       {role.kind ? ` · ${role.kind}` : ""}
