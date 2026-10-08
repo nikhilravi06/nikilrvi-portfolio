@@ -3,7 +3,7 @@ export const site = {
   email: "nikhilravi546@gmail.com",
   phoneDisplay: "+91 9496245812",
   phoneHref: "tel:+919496245812",
-  linkedin: "https://www.linkedin.com/in/nikhil-ravi",
+  linkedin: "https://www.linkedin.com/in/nikhil-ravi-6125b4227",
   linkedinLabel: "LinkedIn",
   location: "Angamaly, Kerala",
   resumeHref: "/Nikhil-Ravi-Resume.pdf",
