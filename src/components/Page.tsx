@@ -119,6 +119,31 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           className="relative mx-auto w-full max-w-[380px]"
         >
+          {/* Handwritten "Hi, this is me!" note pointing at the photo */}
+          <motion.div
+            aria-hidden="true"
+            initial={reduce ? false : { opacity: 0, y: 8, rotate: -14 }}
+            animate={{ opacity: 1, y: 0, rotate: -8 }}
+            transition={{ type: "spring", stiffness: 140, damping: 14, delay: 0.9 }}
+            className="pointer-events-none absolute right-6 top-6 z-10 select-none md:-left-32 md:right-auto md:top-24"
+          >
+            <p className="font-hand text-[22px] leading-[1.05] text-white md:text-[24px] md:text-ink">
+              Hi, this
+              <br />
+              is me!
+            </p>
+            {/* sparkle ticks */}
+            <svg viewBox="0 0 30 24" className="absolute -right-6 -top-3 h-5 w-6 text-white md:text-ink" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              <path d="M3 20 L8 8" />
+              <path d="M13 18 L23 6" />
+              <path d="M18 22 L28 18" />
+            </svg>
+            {/* arrow: curves down-left on mobile, down-right into the photo on desktop */}
+            <svg viewBox="0 0 80 60" className="absolute -bottom-12 -left-12 h-12 w-16 -scale-x-100 text-white md:text-ink md:-bottom-14 md:left-10 md:h-14 md:w-20 md:scale-x-100" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 4 C 4 30, 30 50, 70 46" />
+              <path d="M60 37 L 71 46 L 59 54" />
+            </svg>
+          </motion.div>
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line border-black bg-gradient-to-b from-[#161616] to-black shadow-[0_1px_0_rgba(0,0,0,0.04),0_24px_48px_-24px_rgba(0,0,0,0.45)]">
             <div
               className="absolute inset-0 opacity-[0.08]"
