@@ -68,13 +68,6 @@ export function Hero() {
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className={`${shell} relative grid items-center gap-12 pb-16 pt-14 md:grid-cols-[1.35fr_1fr] md:gap-16 md:pb-20 md:pt-24`}>
         <div>
-          <motion.p
-            {...rise(0)}
-            className="mb-7 inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1 text-[13px] text-body"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Open to AI &amp; data analyst roles
-          </motion.p>
           <motion.p {...rise(0.05)} className="font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
             {site.name} — {site.role}
           </motion.p>
