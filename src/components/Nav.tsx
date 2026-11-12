@@ -1,90 +1,91 @@
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { nav, site } from "../data/resume.ts"
-import { Monogram } from "./Monogram.tsx"
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <nav
-        aria-label="Primary"
-        className={`relative flex w-full max-w-[34rem] items-center justify-between gap-3 rounded-full border border-black/5 bg-white/90 py-1.5 pl-1.5 pr-1.5 backdrop-blur-md transition-shadow duration-300 ${
-          scrolled ? "shadow-[0_8px_30px_-8px_rgba(0,0,0,0.25)]" : "shadow-[0_4px_18px_-6px_rgba(0,0,0,0.18)]"
-        }`}
-      >
-        <a href="#top" aria-label={`${site.name}, back to top`} className="shrink-0">
-          <Monogram className="h-9 w-9 text-[13px]" />
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md transition-colors duration-200 ${
+        scrolled || open ? "border-line bg-bg/85" : "border-transparent bg-bg/0"
+      }`}
+    >
+      <nav aria-label="Primary" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <a href="#top" className="flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-ink">
+          <span className="grid h-7 w-7 place-items-center rounded-md bg-ink font-mono text-[11px] font-medium text-white">
+            NR
+          </span>
+          {site.name}
         </a>
 
-        <ul className="hidden items-center gap-6 text-[14px] text-body sm:flex">
+        <div className="hidden items-center gap-1 md:flex">
           {nav.map((item) => (
-            <li key={item.id}>
-              <a href={`#${item.id}`} className="transition-colors hover:text-ink">
-                {item.label}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a href={site.resumeHref} target="_blank" rel="noopener" className="transition-colors hover:text-ink">
-              Resume
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className="rounded-md px-3 py-1.5 text-[14px] text-body transition-colors hover:bg-black/[0.04] hover:text-ink"
+            >
+              {item.label}
             </a>
-          </li>
-        </ul>
-
-        <div className="flex items-center gap-1.5">
+          ))}
           <a
             href="#contact"
-            className="rounded-full bg-brand px-4 py-2 text-[14px] font-medium text-white transition-colors hover:bg-brand-dark"
+            className="rounded-md px-3 py-1.5 text-[14px] text-body transition-colors hover:bg-black/[0.04] hover:text-ink"
           >
-            Work with me
+            Contact
           </a>
-          <button
-            type="button"
-            className="grid h-9 w-9 place-items-center rounded-full text-ink hover:bg-black/5 sm:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
+          <a
+            href={site.resumeHref}
+            target="_blank"
+            rel="noopener"
+            className="ml-2 rounded-md bg-ink px-3.5 py-1.5 text-[14px] font-medium text-white transition-opacity hover:opacity-85"
           >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
+            Résumé
+          </a>
         </div>
 
-        {open && (
-          <ul className="absolute inset-x-0 top-[calc(100%+0.5rem)] flex flex-col gap-1 rounded-3xl border border-black/5 bg-white p-2 text-[15px] shadow-[0_12px_30px_-10px_rgba(0,0,0,0.3)] sm:hidden">
-            {nav.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-2xl px-4 py-2.5 text-ink hover:bg-black/5"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a
-                href={site.resumeHref}
-                target="_blank"
-                rel="noopener"
-                className="block rounded-2xl px-4 py-2.5 text-ink hover:bg-black/5"
-              >
-                Resume
-              </a>
-            </li>
-          </ul>
-        )}
+        <button
+          type="button"
+          className="grid h-9 w-9 place-items-center rounded-md text-ink hover:bg-black/5 md:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </nav>
+
+      {open && (
+        <div className="border-t border-line bg-bg px-5 pb-4 pt-2 md:hidden">
+          {[...nav, { id: "contact", label: "Contact" }].map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setOpen(false)}
+              className="block border-b border-line py-3 text-[15px] text-ink"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href={site.resumeHref}
+            target="_blank"
+            rel="noopener"
+            className="mt-4 block rounded-md bg-ink py-2.5 text-center text-[15px] font-medium text-white"
+          >
+            Download résumé
+          </a>
+        </div>
+      )}
     </header>
   )
 }
