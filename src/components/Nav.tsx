@@ -21,7 +21,7 @@ export function Nav() {
     >
       <nav aria-label="Primary" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-ink">
-          <span className="grid h-7 w-7 place-items-center rounded-md bg-ink font-mono text-[11px] font-medium text-black">
+          <span className="grid h-7 w-7 place-items-center rounded-md bg-ink font-mono text-[11px] font-medium text-white">
             NR
           </span>
           {site.name}
@@ -32,14 +32,14 @@ export function Nav() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="rounded-md px-3 py-1.5 text-[14px] text-body transition-colors hover:bg-white/[0.06] hover:text-ink"
+              className="rounded-md px-3 py-1.5 text-[14px] text-body transition-colors hover:bg-black/[0.04] hover:text-ink"
             >
               {item.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="rounded-md px-3 py-1.5 text-[14px] text-body transition-colors hover:bg-white/[0.06] hover:text-ink"
+            className="rounded-md px-3 py-1.5 text-[14px] text-body transition-colors hover:bg-black/[0.04] hover:text-ink"
           >
             Contact
           </a>
@@ -47,7 +47,7 @@ export function Nav() {
             href={site.resumeHref}
             target="_blank"
             rel="noopener"
-            className="ml-2 rounded-md bg-ink px-3.5 py-1.5 text-[14px] font-medium text-black transition-opacity hover:opacity-85"
+            className="ml-2 rounded-md bg-ink px-3.5 py-1.5 text-[14px] font-medium text-white transition-opacity hover:opacity-85"
           >
             Résumé
           </a>
@@ -55,7 +55,7 @@ export function Nav() {
 
         <button
           type="button"
-          className="grid h-9 w-9 place-items-center rounded-md text-ink hover:bg-white/10 md:hidden"
+          className="grid h-9 w-9 place-items-center rounded-md text-ink hover:bg-black/5 md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -80,7 +80,7 @@ export function Nav() {
             href={site.resumeHref}
             target="_blank"
             rel="noopener"
-            className="mt-4 block rounded-md bg-ink py-2.5 text-center text-[15px] font-medium text-black"
+            className="mt-4 block rounded-md bg-ink py-2.5 text-center text-[15px] font-medium text-white"
           >
             Download résumé
           </a>

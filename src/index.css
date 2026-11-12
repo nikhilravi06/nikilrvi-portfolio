@@ -4,15 +4,13 @@
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono Variable", ui-monospace, monospace;
 
-  --color-bg: #000000;
-  --color-surface: #0a0a0a;
-  --color-raised: #141414;
-  --color-ink: #ededed;
-  --color-body: #a1a1a1;
-  --color-muted: #6e6e6e;
-  --color-line: #1f1f1f;
-  --color-line-strong: #333333;
-  --color-accent: #3b9eff;
+  --color-bg: #fafafa;
+  --color-ink: #0a0a0a;
+  --color-body: #4d4d4d;
+  --color-muted: #8f8f8f;
+  --color-line: #ebebeb;
+  --color-line-strong: #d9d9d9;
+  --color-accent: #0a72ef;
 }
 
 html {
@@ -43,11 +41,7 @@ body {
 
 ::selection {
   background: var(--color-ink);
-  color: #000;
-}
-
-html {
-  color-scheme: dark;
+  color: #fff;
 }
 
 h1,
@@ -60,8 +54,8 @@ h3 {
 /* faint grid behind the hero, fading out */
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
   background-size: 56px 56px;
   -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 30%, transparent 75%);
   mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 30%, transparent 75%);
@@ -75,7 +69,7 @@ h3 {
   padding: 0.5rem 0.9rem;
   border-radius: 6px;
   background: var(--color-ink);
-  color: #000;
+  color: #fff;
   font-weight: 500;
 }
 
