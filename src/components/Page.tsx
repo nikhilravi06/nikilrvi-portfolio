@@ -70,7 +70,7 @@ export function Hero() {
         <div>
           <motion.p
             {...rise(0)}
-            className="mb-7 inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1 text-[13px] text-body"
+            className="mb-7 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-[13px] text-body"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Open to AI &amp; data analyst roles
@@ -92,13 +92,13 @@ export function Hero() {
               href={site.resumeHref}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-85"
+              className="inline-flex items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-[15px] font-medium text-black transition-opacity hover:opacity-85"
             >
               <ArrowDownToLine size={16} /> Download résumé
             </a>
             <a
               href={`mailto:${site.email}`}
-              className="inline-flex items-center gap-2 rounded-md border border-line-strong bg-white px-5 py-2.5 text-[15px] font-medium text-ink transition-colors hover:border-ink"
+              className="inline-flex items-center gap-2 rounded-md border border-line-strong bg-surface px-5 py-2.5 text-[15px] font-medium text-ink transition-colors hover:border-ink"
             >
               <Mail size={16} /> Email me
             </a>
@@ -119,8 +119,8 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           className="relative mx-auto w-full max-w-[380px]"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-gradient-to-b from-[#f1f1f2] to-[#e4e5e8] shadow-[0_1px_0_rgba(0,0,0,0.04),0_24px_48px_-24px_rgba(0,0,0,0.25)]">
-            <div className="grid-bg absolute inset-0 opacity-70" aria-hidden="true" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-gradient-to-b from-[#121212] to-black shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]">
+            <div className="grid-bg absolute inset-0 opacity-60" aria-hidden="true" />
             <img
               src={site.photo}
               alt={`Portrait of ${site.name}`}
@@ -128,8 +128,9 @@ export function Hero() {
               height={800}
               className="absolute inset-x-0 bottom-0 mx-auto h-[96%] w-auto object-contain object-bottom"
             />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/60 to-transparent" aria-hidden="true" />
           </div>
-          <figcaption className="absolute -bottom-4 left-4 right-4 flex items-center justify-between gap-3 rounded-xl border border-line bg-white/95 px-4 py-3 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.3)] backdrop-blur">
+          <figcaption className="absolute -bottom-4 left-4 right-4 flex items-center justify-between gap-3 rounded-xl border border-line bg-raised/90 px-4 py-3 shadow-[0_12px_24px_-14px_rgba(0,0,0,0.8)] backdrop-blur">
             <span>
               <span className="block text-[14px] font-semibold text-ink">{site.name}</span>
               <span className="block text-[13px] text-muted">{site.role}</span>
@@ -142,7 +143,7 @@ export function Hero() {
       </div>
 
       <div className={`${shell} relative pb-20`}>
-        <dl className="grid grid-cols-2 overflow-hidden rounded-xl border border-line bg-white md:grid-cols-4">
+        <dl className="grid grid-cols-2 overflow-hidden rounded-xl border border-line bg-surface md:grid-cols-4">
           {stats.map(([k, v], i) => (
             <div
               key={k}
@@ -162,7 +163,7 @@ export function Hero() {
 
 export function Focus() {
   return (
-    <section id="work" className="border-t border-line bg-white py-20 md:py-28">
+    <section id="work" className="border-t border-line bg-surface py-20 md:py-28">
       <div className={shell}>
         <SectionHead
           index="01"
@@ -182,7 +183,7 @@ export function Focus() {
               <p className="mt-3 text-[15px] leading-relaxed">{f.body}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {f.tags.map((t) => (
-                  <li key={t} className="rounded-md bg-bg px-2.5 py-1 font-mono text-[12px] text-body ring-1 ring-line">
+                  <li key={t} className="rounded-md bg-raised px-2.5 py-1 font-mono text-[12px] text-body ring-1 ring-line">
                     {t}
                   </li>
                 ))}
@@ -252,15 +253,15 @@ export function Experience() {
 function ProjectArt({ name }: { name: string }) {
   if (name === "PhishFinder") {
     return (
-      <div className="w-full max-w-[300px] rounded-lg border border-line bg-white p-4 shadow-sm">
-        <div className="flex items-center gap-2 rounded-md bg-bg px-3 py-2 font-mono text-[11px] text-muted ring-1 ring-line">
+      <div className="w-full max-w-[300px] rounded-lg border border-line bg-surface p-4 ">
+        <div className="flex items-center gap-2 rounded-md bg-raised px-3 py-2 font-mono text-[11px] text-muted ring-1 ring-line">
           <span className="h-2 w-2 rounded-full bg-red-500" /> secure-login-verify.example
         </div>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-[13px] font-semibold text-ink">Phishing risk</span>
-          <span className="rounded-full bg-red-50 px-2 py-0.5 text-[11px] font-medium text-red-600 ring-1 ring-red-200">Blocked</span>
+          <span className="rounded-full bg-red-500/10 px-2 py-0.5 text-[11px] font-medium text-red-400 ring-1 ring-red-500/30">Blocked</span>
         </div>
-        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-bg ring-1 ring-line">
+        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-raised ring-1 ring-line">
           <span className="block h-full w-[82%] rounded-full bg-red-500" />
         </div>
         <p className="mt-3 font-mono text-[10.5px] text-muted">model: random_forest · input: url features</p>
@@ -268,7 +269,7 @@ function ProjectArt({ name }: { name: string }) {
     )
   }
   return (
-    <div className="w-full max-w-[300px] rounded-lg border border-line bg-white p-4 shadow-sm">
+    <div className="w-full max-w-[300px] rounded-lg border border-line bg-surface p-4 ">
       <p className="text-[13px] font-semibold text-ink">Case overview</p>
       <div className="mt-3 space-y-2">
         {[
@@ -276,7 +277,7 @@ function ProjectArt({ name }: { name: string }) {
           ["Case under review", "bg-amber-500"],
           ["Fine payment", "bg-line-strong"],
         ].map(([label, dot]) => (
-          <div key={label} className="flex items-center gap-2.5 rounded-md bg-bg px-3 py-2 text-[12px] text-body ring-1 ring-line">
+          <div key={label} className="flex items-center gap-2.5 rounded-md bg-raised px-3 py-2 text-[12px] text-body ring-1 ring-line">
             <span className={`h-2 w-2 rounded-full ${dot}`} />
             {label}
           </div>
@@ -288,13 +289,13 @@ function ProjectArt({ name }: { name: string }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="border-t border-line bg-white py-20 md:py-28">
+    <section id="projects" className="border-t border-line bg-surface py-20 md:py-28">
       <div className={shell}>
         <SectionHead index="03" label="Projects" title="Things I’ve built" />
         <div className="grid gap-6 md:grid-cols-2">
           {projects.map((p, i) => (
             <Reveal key={p.name} delay={i * 0.06}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-shadow duration-200 hover:shadow-[0_20px_40px_-24px_rgba(0,0,0,0.3)]">
+              <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface transition-shadow duration-200 hover:border-line-strong">
                 <div className="relative grid h-56 place-items-center overflow-hidden border-b border-line bg-bg px-6">
                   <div className="grid-bg absolute inset-0" aria-hidden="true" />
                   <div className="relative w-full transition-transform duration-300 group-hover:-translate-y-1 [&>*]:mx-auto">
@@ -310,7 +311,7 @@ export function Projects() {
                   </p>
                   <ul className="mt-auto flex flex-wrap gap-2 pt-6">
                     {p.technologies.map((t) => (
-                      <li key={t} className="rounded-md bg-bg px-2.5 py-1 font-mono text-[12px] text-body ring-1 ring-line">
+                      <li key={t} className="rounded-md bg-raised px-2.5 py-1 font-mono text-[12px] text-body ring-1 ring-line">
                         {t}
                       </li>
                     ))}
@@ -332,7 +333,7 @@ export function Skills() {
     <section id="skills" className="py-20 md:py-28">
       <div className={shell}>
         <SectionHead index="04" label="Skills" title="Tools, skills & credentials" />
-        <Reveal className="grid overflow-hidden rounded-xl border border-line bg-white md:grid-cols-3">
+        <Reveal className="grid overflow-hidden rounded-xl border border-line bg-surface md:grid-cols-3">
           {skills.map((g, i) => (
             <div key={g.label} className={`p-7 ${i > 0 ? "border-t border-line md:border-l md:border-t-0" : ""}`}>
               <h3 className="font-mono text-[12px] font-normal uppercase tracking-[0.14em] text-muted">{g.label}</h3>
@@ -348,7 +349,7 @@ export function Skills() {
         </Reveal>
 
         <div className="mt-6 grid gap-6 md:grid-cols-[1.6fr_1fr]">
-          <Reveal className="rounded-xl border border-line bg-white p-7">
+          <Reveal className="rounded-xl border border-line bg-surface p-7">
             <h3 className="font-mono text-[12px] font-normal uppercase tracking-[0.14em] text-muted">Certifications</h3>
             <ul className="mt-4">
               {certifications.map((c) => (
@@ -359,13 +360,13 @@ export function Skills() {
               ))}
             </ul>
           </Reveal>
-          <Reveal className="flex flex-col rounded-xl border border-line bg-white p-7">
+          <Reveal className="flex flex-col rounded-xl border border-line bg-surface p-7">
             <h3 className="font-mono text-[12px] font-normal uppercase tracking-[0.14em] text-muted">Education</h3>
             <p className="mt-4 text-[1.15rem] font-semibold leading-snug tracking-tight text-ink">{education.degree}</p>
             <p className="mt-2 text-[15px]">{education.school}</p>
             <div className="mt-auto flex items-center justify-between pt-6 text-[14px]">
               <span className="font-mono text-muted">{education.period}</span>
-              <span className="rounded-md bg-bg px-2.5 py-1 font-medium text-ink ring-1 ring-line">{education.note}</span>
+              <span className="rounded-md bg-raised px-2.5 py-1 font-medium text-ink ring-1 ring-line">{education.note}</span>
             </div>
           </Reveal>
         </div>
@@ -379,9 +380,9 @@ export function Skills() {
 export function Contact() {
   return (
     <section id="contact" className="px-5 pb-10 sm:px-8">
-      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl bg-ink px-7 py-16 text-white md:px-14 md:py-20">
+      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl border border-line bg-surface px-7 py-16 text-ink md:px-14 md:py-20">
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.12]"
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
           aria-hidden="true"
           style={{
             backgroundImage:
@@ -393,18 +394,18 @@ export function Contact() {
         />
         <div className="relative grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
           <div>
-            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-white/50">05 / Contact</p>
-            <h2 className="mt-4 text-[clamp(2.1rem,4.6vw,3.4rem)] font-semibold leading-[1.05] !text-white">
+            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">05 / Contact</p>
+            <h2 className="mt-4 text-[clamp(2.1rem,4.6vw,3.4rem)] font-semibold leading-[1.05]">
               Hiring for an AI or data role? Let’s talk.
             </h2>
-            <p className="mt-5 max-w-lg text-[16px] text-white/65">
+            <p className="mt-5 max-w-lg text-[16px] text-body">
               I’m available for AI data analyst and data analyst roles. Email is the quickest way to reach me.
             </p>
           </div>
           <div className="flex flex-col gap-3">
             <a
               href={`mailto:${site.email}`}
-              className="inline-flex items-center justify-between gap-3 rounded-md bg-white px-5 py-3.5 text-[15px] font-medium text-ink transition-opacity hover:opacity-90"
+              className="inline-flex items-center justify-between gap-3 rounded-md bg-ink px-5 py-3.5 text-[15px] font-medium text-black transition-opacity hover:opacity-90"
             >
               <span className="inline-flex items-center gap-2.5">
                 <Mail size={17} /> {site.email}
@@ -413,7 +414,7 @@ export function Contact() {
             </a>
             <a
               href={site.phoneHref}
-              className="inline-flex items-center justify-between gap-3 rounded-md border border-white/20 px-5 py-3.5 text-[15px] text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center justify-between gap-3 rounded-md border border-line-strong px-5 py-3.5 text-[15px] text-ink transition-colors hover:bg-white/[0.06]"
             >
               <span className="inline-flex items-center gap-2.5">
                 <Phone size={16} /> {site.phoneDisplay}
@@ -423,7 +424,7 @@ export function Contact() {
               href={site.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-between gap-3 rounded-md border border-white/20 px-5 py-3.5 text-[15px] text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center justify-between gap-3 rounded-md border border-line-strong px-5 py-3.5 text-[15px] text-ink transition-colors hover:bg-white/[0.06]"
             >
               LinkedIn <ArrowUpRight size={17} />
             </a>
