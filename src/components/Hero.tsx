@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion"
 import { site } from "../data/resume.ts"
 import { FanCards } from "./FanCards.tsx"
-import { Monogram } from "./Monogram.tsx"
 
 export function Hero() {
   const reduce = useReducedMotion()
@@ -48,16 +47,21 @@ export function Hero() {
 
       {/* "Hi, this is me!" sticker */}
       <motion.div
-        initial={reduce ? false : { opacity: 0, scale: 0.8, rotate: -12 }}
-        animate={{ opacity: 1, scale: 1, rotate: -6 }}
-        transition={{ type: "spring", stiffness: 160, damping: 14, delay: 0.9 }}
-        className="absolute bottom-4 left-4 z-10 flex items-end sm:bottom-5 sm:left-10"
+        initial={reduce ? false : { opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 140, damping: 16, delay: 0.9 }}
+        className="absolute bottom-0 left-2 z-10 flex items-end sm:left-8"
       >
-        <div className="rounded-[22px] bg-white p-1.5 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)]">
-          <Monogram className="h-14 w-14 text-[18px] sm:h-[72px] sm:w-[72px] sm:text-[22px]" />
-        </div>
-        <div className="relative ml-6 hidden -translate-y-16 sm:block">
-          <p className="font-hand text-[19px] leading-[1.05] text-ink" style={{ transform: "rotate(10deg)" }}>
+        <img
+          src="/me.webp"
+          alt={`Photo of ${site.name}`}
+          width={440}
+          height={494}
+          className="block h-auto w-[118px] select-none drop-shadow-[0_8px_14px_rgba(0,0,0,0.18)] sm:w-[170px]"
+          draggable={false}
+        />
+        <div className="relative mb-24 ml-1 hidden sm:block">
+          <p className="font-hand text-[20px] leading-[1.05] text-ink" style={{ transform: "rotate(10deg)" }}>
             Hi, this
             <br />
             is me!
@@ -82,7 +86,7 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="zigzag absolute inset-x-0 bottom-0" aria-hidden="true" />
+      <div className="zigzag absolute inset-x-0 bottom-0 z-20" aria-hidden="true" />
     </section>
   )
 }
